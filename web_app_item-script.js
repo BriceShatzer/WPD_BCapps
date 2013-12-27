@@ -13,6 +13,7 @@ var obj_{tag_counter} ={
 name:'{tag_name_nolink}',
 num:'{tag_counter}',
 type:'{tag_type}',
+desc:'{tag_description}',
 BC_latlng: new google.maps.LatLng({tag_addresslatitude},{tag_addresslongitude}),
 custom_lat:'{tag_custom_lat}',
 custom_lng:'{tag_custom_lng}',
@@ -24,11 +25,19 @@ pin_latlng: function() {
 	}
 };
 
+var info_{tag_counter} = new google.maps.InfoWindow({
+	content: obj_{tag_counter}.desc
+});
+
 var pin_{tag_counter} = new google.maps.Marker({
 	position: obj_{tag_counter}.pin_latlng(), 
 	map: map,
 	title: obj_{tag_counter}.name
-})
+});
+
+google.maps.event.addListener(pin_{tag_counter}, 'click', function() {
+    info_{tag_counter}.open(map,pin_{tag_counter});
+  });
 
 --
 
