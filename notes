@@ -1,0 +1,63 @@
+-Features
+Aquatic Splash
+Ball Field
+Basketball
+Carriage House
+Chamber Park Church
+Childerley Chapel
+Class Room
+Drinking Fountain
+Fitness Center
+Gazebo
+Gymnasium
+Jogging Path
+Maintenance Building
+Meeting Room
+Museum
+Natural Wetlands
+Nature Trail
+Neighborhood Park
+Outdoor Ice Skating
+Outdoor Pool
+Parking
+Passive Park
+Picnic Table
+Play Structure
+Play Structure ages 2 to 5
+Play Structure ages 6 to 9
+Portable Facilities
+Preschool
+Recreation Center
+Sand Volleyball Courts
+Shelter
+Soccer Field
+Tennis Court
+Walking Path
+Walking Track
+Washrooms
+Wetland Nature Area
+
+Aquatic Splash,Ball Field,Basketball,Carriage House,Chamber Park Church,Childerley Chapel,Class Room,Drinking Fountain,Fitness Center,Gazebo,Gymnasium,Jogging Path,Maintenance Building,Meeting Room,Museum,Natural Wetlands,Nature Trail,Neighborhood Park,Outdoor Ice Skating,Outdoor Pool,Parking,Passive Park,Picnic Table,Play Structure,Play Structure ages 2 to 5,Play Structure ages 6 to 9,Portable Facilities,Preschool,Recreation Center,Sand Volleyball Courts,Shelter,Soccer Field,Tennis Court,Walking Path,Walking Track,Washrooms,Wetland Nature Area
+
+
+
+-Types
+Aquatic Center
+Country Club
+Golf Course
+Park
+Recreation Center
+Tot Lot
+
+Aquatic Center,Country Club,Golf Course,Park,Recreation Center,Tot Lot
+
+
+
+function initialize() {
+  var Wheeling_LatLng = new google.maps.LatLng(42.131389, -87.929722);
+  var mapOptions = {
+    zoom: 4,
+    center: Wheeling_LatLng
+  };
+
+var map = new google.maps.Map(document.getElementById('map'), mapOptions);

@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>List of parks</h1>
+        <div>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<!-- wrapping and hidding orginal work 
+<form name="catcustomcontentform57513" method="post" onsubmit="return checkWholeForm57513(this)" action="/Default.aspx?CCID=15712&amp;FID=150285&amp;ExcludeBoolFalse=True&amp;PageID={module_oid}">
+            <table class="webform" cellspacing="0" cellpadding="2" border="0">
+                <tbody>
+                    <tr>
+                        <td><label for="CAT_txtKeywords">Keywords</label><br />
+                        <input type="text" name="CAT_txtKeywords" id="CAT_txtKeywords" class="cat_textbox" maxlength="255" /></td>
+                    </tr>
+                    <tr>
+                        <td><input name="CAT_Category" id="CAT_Category" type="hidden" value="-1" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Type</label><br />
+                        <input type="radio" name="CAT_Custom_1" id="CAT_Custom_1_0" value="Aquatic Center" />Aquatic Center<br />
+                        <input type="radio" name="CAT_Custom_1" id="CAT_Custom_1_1" value="Country Club" />Country Club<br />
+                        <input type="radio" name="CAT_Custom_1" id="CAT_Custom_1_2" value="Golf Course" />Golf Course<br />
+                        <input type="radio" name="CAT_Custom_1" id="CAT_Custom_1_3" value="Park" />Park<br />
+                        <input type="radio" name="CAT_Custom_1" id="CAT_Custom_1_4" value="Recreation Center" />Recreation Center<br />
+                        <input type="radio" name="CAT_Custom_1" id="CAT_Custom_1_5" value="Tot Lot" />Tot Lot</td>
+                    </tr>
+                    <tr>
+                        <td><label>Features</label><br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_0" value="Aquatic Splash" />Aquatic Splash<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_1" value="Ball Field" />Ball Field<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_2" value="Basketball" />Basketball<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_3" value="Carriage House" />Carriage House<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_4" value="Chamber Park Church" />Chamber Park Church<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_5" value="Childerley Chapel" />Childerley Chapel<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_6" value="Class Room" />Class Room<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_7" value="Drinking Fountain" />Drinking Fountain<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_8" value="Fitness Center" />Fitness Center<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_9" value="Gazebo" />Gazebo<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_10" value="Gymnasium" />Gymnasium<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_11" value="Jogging Path" />Jogging Path<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_12" value="Maintenance Building" />Maintenance Building<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_13" value="Meeting Room" />Meeting Room<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_14" value="Museum" />Museum<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_15" value="Natural Wetlands" />Natural Wetlands<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_16" value="Nature Trail" />Nature Trail<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_17" value="Neighborhood Park" />Neighborhood Park<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_18" value="Outdoor Ice Skating" />Outdoor Ice Skating<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_19" value="Outdoor Pool" />Outdoor Pool<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_20" value="Parking" />Parking<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_21" value="Passive Park" />Passive Park<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_22" value="Picnic Table" />Picnic Table<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_23" value="Play Structure" />Play Structure<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_24" value="Play Structure ages 2 to 5" />Play Structure ages 2 to 5<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_25" value="Play Structure ages 6 to 9" />Play Structure ages 6 to 9<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_26" value="Portable Facilities" />Portable Facilities<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_27" value="Preschool" />Preschool<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_28" value="Recreation Center" />Recreation Center<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_29" value="Sand Volleyball Courts" />Sand Volleyball Courts<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_30" value="Shelter" />Shelter<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_31" value="Soccer Field" />Soccer Field<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_32" value="Tennis Court" />Tennis Court<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_33" value="Walking Path" />Walking Path<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_34" value="Walking Track" />Walking Track<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_35" value="Washrooms" />Washrooms<br />
+                        <input type="checkbox" name="CAT_Custom_2" id="CAT_Custom_2_36" value="Wetland Nature Area" />Wetland Nature Area</td>
+                    </tr>
+                    <tr>
+                        <td><label for="Postcode_15712">Search by Zipcode</label><br />
+                        <input type="text" maxlength="255" name="Postcode_15712" id="Postcode_15712" class="cat_textbox" /><br />
+                        <input type="hidden" id="Country_15712" name="Country_15712" value="US" /><label for="Distance_15712">Distance</label><br />
+                        <select name="Distance_15712" id="Distance_15712" class="cat_dropdown">
+                        <option value="5">5 miles</option>
+                        <option value="10">10 miles</option>
+                        <option value="20">20 miles</option>
+                        <option value="50">50 miles</option>
+                        <option value="100">100 miles</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><input class="cat_button" type="submit" value="Search" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <script type="text/javascript" src="/CatalystScripts/ValidationFunctions.js"></script>
+        <script type="text/javascript">function checkWholeForm57513(theForm){var why = "";if (why != ""){alert(why);return false;}return true;}</script>
+        <br />
+        </div>
+        {module_webappsresultsmap,AIzaSyAsG-sx7NNclDDFMYMD0Y-PiyNZv7JUKJ8,500,400,-1,default}
+                <div>
+            {module_webapps,15712,a,,,,true,10,,1}<br />
+        </div>
+ original work -->
+ <style>#map img { max-width: none;}</style>
+
+ <div id="map" class="col-md-12" style="min-height:400px;">
+ </div>
+
+<script>
+window.onload = function() { 
+
+function initialize() {
+  var Wheeling_LatLng = new google.maps.LatLng(42.131389, -87.929722);
+  var mapOptions = {
+    zoom: 12,
+    center: Wheeling_LatLng
+  };
+  var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+{module_webapps,15712,a,,,,true,10,,1}
+
+}
+
+initialize();
+
+
+};
+</script>
+    </body>
+</html>
