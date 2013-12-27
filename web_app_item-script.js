@@ -13,7 +13,7 @@ var obj_{tag_counter} ={
 name:'{tag_name_nolink}',
 num:'{tag_counter}',
 type:'{tag_type}',
-desc:'{tag_description}',
+desc:'I have inputed static info which will appear in all of the InfoWindows that are built',
 BC_latlng: new google.maps.LatLng({tag_addresslatitude},{tag_addresslongitude}),
 custom_lat:'{tag_custom_lat}',
 custom_lng:'{tag_custom_lng}',
