@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+#map_info > div {display: none;}
+	</style>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+</head>
+<body>
+	<section id="map_info">
+		<div id="obj_1" data-name="Chamber Park" data-num="1" data-type="park" data-BC_lat="42.131526" data-BC_lng="-87.92958" data-custom_lat="42.1482" data-custom_lng="-87.915344">
+			<p><span style="font-family: roboto, arial, sans-serif; font-size: 13px;">Chamber Park is located between Strong and Dundee Roads at 251 N. Wolf Rd. The property consists of 13 acres and is home to the Chamber Church, Carriage House, and the Wheeling Historical Society Museum. The church is said to be the second oldest church in Wheeling and as recently as the 1970s held services on Sundays. The Carriage House was moved to the park in the 1980s and the Museum was moved from Milwaukee Rd., where it served as the original Wheeling police station.</span></p>
+			<p><span style="font-family: roboto, arial, sans-serif; font-size: 13px;">In the 1970s, the park had an outdoor and "kiddie" pool, shuffleboard courts, a large fountain, and an ice skating rink. Today, Chamber Park boasts play equipment, picnic tables, a sheltered gazebo, a dedicated flower garden area, and basketball hoops for informal play. The park also hosts Santa and Mrs. Claus when they come to town every December for Lollipop Lane.</span></p>
+		</div>
+		<div id="obj_2" data-name="Chiderley Park" data-num="2" data-type="park" data-BC_lat="42.142212" data-BC_lng="-87.931234" data-custom_lat="42.144696" data-custom_lng="-87.940625">
+			<p><span style="font-family: roboto, arial, sans-serif; font-size: 13px;">Childerley Park consists of 12.5 acres and is located at 506 McHenry Road. Before being purchased by the park district in 1977, the property had two large ten-bedroom homes, a groundskeeper house, a log cabin schoolhouse, and a church reported to be the oldest in Wheeling. Back then, the grounds had an apple orchard, barns with fenced in areas for animals, and was used as a women's refuge and as a religious retreat.</span></p>
+			<p><span style="font-family: roboto, arial, sans-serif; font-size: 13px;">The park was originally dedicated to the residents of Wheeling in 1979 and was redeveloped and completed in 1996. Currently there is a shelter area with electricity, BBQ grills, sand volleyball courts, paths, working washroom facilities, open passive areas, two age group playground areas, and the original church, which was dedicated as the Loraine E. Lark Chapel in 1980 and hosts non-denominational weddings.</span></p>
+		</div>		
+	</section>
+	<h1> Park Maps</h2>
+	 <div id="map" class="col-md-12" style="min-height: 400px;"></div>
+ <script>
+window.onload = function() { 
+
+	function initialize() {
+		
+		var mapOptions = {
+			zoom: 12,
+			center: new google.maps.LatLng(42.131389, -87.929722)
+		};
+		
+		var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+		
+		var parkObjects = {};
+
+
+	$('#map_info > div').each(function(){
+//-----------start variable scope for each object----------------------
+
+		var id = $(this).attr('id');
+		var type = $(this).data('type');
+		var parkDetails = this.outerHTML;
+		var pin_latlng;
+		var pinImage;		
+
+	//creating pin location from GPS coordinates either manually inputed or derived from the provided address
+		
+		if ( $(this).data('custom_lat') && $(this).data('custom_lng')  ){
+			pin_latlng = new google.maps.LatLng( $(this).data('custom_lat') , $(this).data('custom_lng') )
+		}
+		else{
+			pin_latlng = new google.maps.LatLng( $(this).data('BC_lat') , $(this).data('BC_lng') )
+		};
+
+	//setting pin color based on 'type'
+		if (type == 'Aquatic Center'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/blue.png'}
+		else if (type == 'Country Club'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/lightblue.png'}
+		else if (type == 'Golf Course'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/purple.png'}
+		else if (type == 'park'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/green.png'}
+		else if (type == 'recreation center'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/red.png'}
+		else if (type == 'Tot Lot'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/orange.png'}	
+		else {pinImage = 'http://maps.google.com/mapfiles/ms/micons/red.png'};
+
+		parkObjects[id] = {
+			name: $(this).data('name'),
+			num: $(this).data('num'),
+			type: type,
+			marker:	new google.maps.Marker({	
+					map: map,
+					position: pin_latlng,
+					title: $(this).data('name'),
+					icon: pinImage
+					}),
+			infoWindow: new google.maps.InfoWindow({ content: parkDetails })
+		};
+
+		google.maps.event.addListener( parkObjects[id].marker, 'click', function() {
+    		parkObjects[id].infoWindow.open( map, parkObjects[id].marker);
+    	});	
+	});
+//-----------end variable scope for each object----------------------
+
+		
+	};
+initialize();
+}	
+
+			/*
+			pin_latlng: function() {
+				if ( $(this).data('custom_lat') && $(this).data('custom_lng')  ){
+					 return new google.maps.LatLng( $(this).data('custom_lat') , $(this).data('custom_lng') )
+				}
+				else{ return new google.maps.LatLng( $(this).data('BC_lat') , $(this).data('BC_lng') ) }
+			},
+		};
+	
+
+*/		
+//			
+
+/*
+		google.maps.event.addListener( parkObject[$(this).attr('id')].marker, 'click', function() {
+    		parkObject[$(this).attr('id')].open( map, parkObject[$(this).attr('id')].marker);
+    	});
+
+/*
+		new google.maps.Marker({
+			position: 
+				if ( $(this).data('custom_lat') && $(this).data('custom_lng')  ){
+					new google.maps.LatLng( $(this).data('custom_lat') , $(this).data('custom_lng') )
+				}
+				else{
+					new google.maps.LatLng( $(this).data('BC_lat') , $(this).data('BC_lng') ) 
+				},
+		})
+
+
+		var pin_{tag_counter} = new google.maps.Marker({
+	position: obj_{tag_counter}.pin_latlng(), 
+	map: map,
+	title: obj_{tag_counter}.name
+*/	
+
+	
+
+			//BC_latlng: new google.maps.LatLng( $(this).data('BC_lat') , $(this).data('BC_lng') ),
+			//custom
+
+</script>
+
+</body>
+</html>
+<!--
+..var obj_1 ={
+name:'Chamber Park',
+num:'1',
+type:'Park',
+BC_latlng: new google.maps.LatLng(42.131526,-87.92958),
+custom_lat:'42.14826',
+custom_lng:'-87.915344',
+custom_latlng: new google.maps.LatLng(42.1482601,-87.91534401),
+pin_latlng: function() {
+if ( !this.custom_lat || !this.custom_lng)
+{return this.BC_latlng }
+else {return this.custom_latlng }
+-->
