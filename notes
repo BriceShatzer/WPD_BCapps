@@ -1,3 +1,10 @@
+---
+What's wrong: page is trying to fire window.onload twice. Once for the map scripting, and once for a menu system further down the page. 
+x
+
+
+
+
 -Features
 Aquatic Splash
 Ball Field
