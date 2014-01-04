@@ -1,0 +1,80 @@
+<script>
+$( document ).ready(function() {
+
+function initialize() {
+	
+	var mapOptions = {
+		zoom: 13,
+		center: new google.maps.LatLng(42.139541,-87.928747)
+	};
+	
+	var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+	var infoWindow = new google.maps.InfoWindow({ 
+			maxWidth: Math.round( $('#map').width()*.65 )
+		});
+	
+
+
+	$('#map_objects > div').each(function(){
+//-----------start variable scope for each object----------------------
+		var id = $(this).attr('id');
+		var type = $(this).data('type');
+		var parkDetails = this.outerHTML;
+		//var infoWidth = ;
+		var pin_latlng;
+		var pinImage;
+
+//creating pin location from GPS coordinates either manually inputed or derived from the provided address
+		if ( $(this).data('custom_lat') && $(this).data('custom_lng')  ){
+			pin_latlng = new google.maps.LatLng( $(this).data('custom_lat') , $(this).data('custom_lng') )
+		}
+		else{
+			pin_latlng = new google.maps.LatLng( $(this).data('BC_lat') , $(this).data('BC_lng') )
+		};
+
+//setting pin color based on 'type'
+		if (type == 'Aquatic Center'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/blue.png'}
+		else if (type == 'Country Club'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/lightblue.png'}
+		else if (type == 'Golf Course'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/purple.png'}
+		else if (type == 'Park'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/green.png'}
+		else if (type == 'Recreation Center'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/red.png'}
+		else if (type == 'Tot Lot'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/orange.png'}	
+		else {pinImage = 'http://maps.google.com/mapfiles/ms/micons/red.png'};
+
+
+		var marker = new google.maps.Marker({	
+			map: map,
+			position: pin_latlng,
+			title: $(this).data('name'),
+			icon: pinImage
+		});
+
+	
+		google.maps.event.addListener( marker, 'click', function() {
+			infoWindow.close()
+			infoWindow.setContent( parkDetails )
+			infoWindow.open( map, marker);			
+		});	
+
+		if( $(this).data('active') == 'true' ) {
+			infoWindow.open(map, marker)
+		}
+
+	});
+//-----------end variable scope for each object----------------------
+};
+
+$('body').on('mapRefresh', function(event) {
+	event.preventDefault();
+	initialize();	
+});
+
+initialize();
+
+
+
+});	
+
+
+</script>

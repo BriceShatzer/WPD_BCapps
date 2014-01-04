@@ -20,26 +20,28 @@
 	</section>
 	<h1> Park Maps</h2>
 	 <div id="map" class="col-md-12" style="min-height: 400px;"></div>
- <script>
-window.onload = function() { 
+<script>
+$( document ).ready(function() {
 
 function initialize() {
 	
 	var mapOptions = {
-		zoom: 12,
-		center: new google.maps.LatLng(42.131389, -87.929722)
+		zoom: 13,
+		center: new google.maps.LatLng(42.139541,-87.928747)
 	};
 	
 	var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 	
-
+//$('#map_objects > div').each .width( Math.round( $('#map').width()*.75 ) );
+	console.log ($('#map_objects > div').width() );
 	$('#map_objects > div').each(function(){
 //-----------start variable scope for each object----------------------
 		var id = $(this).attr('id');
 		var type = $(this).data('type');
 		var parkDetails = this.outerHTML;
+		var infoWidth = Math.round( $('#map').width()*.65 );
 		var pin_latlng;
-		var pinImage;		
+		var pinImage;
 
 //creating pin location from GPS coordinates either manually inputed or derived from the provided address
 		if ( $(this).data('custom_lat') && $(this).data('custom_lng')  ){
@@ -53,8 +55,8 @@ function initialize() {
 		if (type == 'Aquatic Center'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/blue.png'}
 		else if (type == 'Country Club'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/lightblue.png'}
 		else if (type == 'Golf Course'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/purple.png'}
-		else if (type == 'park'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/green.png'}
-		else if (type == 'recreation center'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/red.png'}
+		else if (type == 'Park'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/green.png'}
+		else if (type == 'Recreation Center'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/red.png'}
 		else if (type == 'Tot Lot'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/orange.png'}	
 		else {pinImage = 'http://maps.google.com/mapfiles/ms/micons/red.png'};
 
@@ -66,7 +68,10 @@ function initialize() {
 			icon: pinImage
 		});
 
-		var infoWindow = new google.maps.InfoWindow({ content: parkDetails });
+		var infoWindow = new google.maps.InfoWindow({ 
+			content: parkDetails,
+			maxWidth: infoWidth
+		});
 	
 		google.maps.event.addListener( marker, 'click', function() {
 			infoWindow.open( map, marker);
@@ -77,7 +82,7 @@ function initialize() {
 
 initialize();
 
-}	
+});	
 
 
 </script>

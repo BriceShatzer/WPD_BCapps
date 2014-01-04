@@ -1,0 +1,138 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>Park Map</h1>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        <style>
+            #map_objects {display: none}
+            #map img { max-width: none;}
+            #toggle_GolfCourse{background-color: #9269FF;border-color: #7A59D4}
+            #toggle_GolfCourse:hover{background-color: #7A59D4}
+            #toggle_GolfCourse.active{background-color: #5D43A1; border-color: #5a488c;}
+            #toggle_AquaticCenters{background-color: #4473EA; border-color: #2c5bd3;}
+            #toggle_AquaticCenters:hover{background-color: #2c5bd3}
+            #toggle_AquaticCenters.active{background-color:#2852bf; border-color:#3C528D;}
+        </style>
+        <div id="map" class="col-md-12 panel panel-default" style="min-height: 400px;">
+        </div>
+        <div class="panel panel-default">
+        	<form role="form">
+  				<div class="form-group">
+	  				<div class="btn-group" data-toggle="buttons">
+					  <label id="toggle_AquaticCenters" class="btn btn-info">
+					    <input type="checkbox"> Aquatic Centers
+					  </label>
+					  <label id="toggle_GolfCourse" class="btn btn-primary">
+					    <input type="checkbox"> Golf Courses
+					  </label>
+					  <label class="btn btn-success">
+					    <input type="checkbox"> Parks
+					  </label>				  
+					  <label class="btn btn-info">
+					    <input type="checkbox"> Country Clubs
+					  </label>
+					  <label class="btn btn-warning">
+					    <input type="checkbox"> Tot Lots
+					  </label>
+					  <label class="btn btn-danger">
+					    <input type="checkbox"> Recreation Center
+					  </label>				  
+					</div>  			
+
+  				</div>
+
+  			</form>
+        </div>
+
+        <div id="map_objects">
+        {module_webapps,15712,a,,,,true,100,,1}
+        </div>
+        <script>
+$( document ).ready(function() {
+	var activeItem;
+function initialize() {
+//-----------start variable scope for each object----------------------	
+	var mapOptions = {
+		zoom: 13,
+		center: new google.maps.LatLng(42.139541,-87.928747)
+	};
+	
+	var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+	var infoWindow = new google.maps.InfoWindow({ 
+			maxWidth: Math.round( $('#map').width()*.65 )
+		});
+	
+	$('#map_objects > div').each(function(){
+	//-----------start building map objects-----------
+		var id = $(this).attr('id');
+		var type = $(this).data('type');
+		var parkDetails = this.outerHTML;
+		//var infoWidth = ;
+		var pin_latlng;
+		var pinImage;
+
+	//creating pin location from GPS coordinates either manually inputed or derived from the provided address
+		if ( $(this).data('custom_lat') && $(this).data('custom_lng')  ){
+			pin_latlng = new google.maps.LatLng( $(this).data('custom_lat') , $(this).data('custom_lng') )
+		}
+		else{
+			pin_latlng = new google.maps.LatLng( $(this).data('BC_lat') , $(this).data('BC_lng') )
+		};
+
+	//setting pin color based on 'type'
+		if (type == 'Aquatic Center'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/blue.png'}
+		else if (type == 'Country Club'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/lightblue.png'}
+		else if (type == 'Golf Course'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/purple.png'}
+		else if (type == 'Park'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/green.png'}
+		else if (type == 'Recreation Center'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/red.png'}
+		else if (type == 'Tot Lot'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/orange.png'}	
+		else {pinImage = 'http://maps.google.com/mapfiles/ms/micons/red.png'};
+
+
+		var marker = new google.maps.Marker({	
+			map: map,
+			position: pin_latlng,
+			title: $(this).data('name'),
+			icon: pinImage
+		});
+
+	
+		google.maps.event.addListener( marker, 'click', function() {
+			infoWindow.close()
+			infoWindow.setContent( parkDetails )
+			infoWindow.open( map, marker);			
+		});	
+
+		if( $(this).data('active') == 'true' ) {
+			activeItem = marker;
+			//infoWindow.open(map, marker)
+		}
+	//-----------end building map objects-----------
+console.log('end of item build'+activeItem);
+	});
+	
+};
+
+$('body').on('mapRefresh', function(event) {
+	initialize();
+	
+	console.log('end of initialization'+activeItem);
+	
+	if(activeItem){google.maps.event.trigger(activeItem, 'click' );
+}
+//-----------end initialize function----------------------
+});
+console.log('pre-intialize'+activeItem);
+initialize();
+
+
+
+});	
+
+
+</script>
+    </body>
+</html>
