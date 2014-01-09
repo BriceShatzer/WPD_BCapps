@@ -1,0 +1,98 @@
+<form name="catwebformform97654" method="post" onsubmit="return checkWholeForm97654(this)" enctype="multipart/form-data" action="https://wheelingparkdistrict.worldsecuresystems.com/FormProcessv2.aspx?WebFormID=89758&OID={module_oid}&OTYPE={module_otype}&EID={module_eid}&CID={module_cid}&CC={module_urlcountrycode}&Referrer={module_siteurl,true,true}&SAR=False">
+    <h2>Create a User Account</h2>
+    <p>Create </p>
+
+ <span class="req">*</span> Required
+    <table class="webform" cellspacing="0" cellpadding="2" border="0">
+        <tr>
+
+        </tr>
+        <tr>
+            <td>
+                <label for="FirstName">First Name <span class="req">*</span>
+                </label>
+                <br />
+                <input type="text" name="FirstName" id="FirstName" class="cat_textbox" maxlength="255" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="LastName">Last Name <span class="req">*</span>
+                </label>
+                <br />
+                <input type="text" name="LastName" id="LastName" class="cat_textbox" maxlength="255" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="EmailAddress">Email Address <span class="req">*</span>
+                </label>
+                <br />
+                <input type="text" name="EmailAddress" id="EmailAddress" class="cat_textbox" maxlength="255" />
+                <input type="text" style="display:none;" name="Username" id="Username" class="cat_textbox" maxlength="255" />
+            
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="Password">Password <span class="req">*</span> (must be at least six characters long)
+                </label>
+                <br />
+                <input type="password" name="Password" id="Password" class="cat_textbox" maxlength="255" autocomplete="off" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="PasswordConfirm">Confirm Password <span class="req">*</span>
+                </label>
+                <br />
+                <input type="password" name="PasswordConfirm" id="PasswordConfirm" class="cat_textbox" maxlength="255" autocomplete="off" />
+            </td>
+        </tr>
+
+
+            </td>
+        </tr>
+        <tr>
+            <td>{module_ccsecurity}</td>
+        </tr>
+        <tr>
+            <td>
+                <input class="cat_button btn btn-default" type="submit" value="Submit" id="catwebformbutton" />
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript" src="http://wheelingparkdistrict.businesscatalyst.com/CatalystScripts/ValidationFunctions.js"></script>
+    <script type="text/javascript">
+        //<![CDATA[
+        var submitcount97654 = 0;
+
+        function checkWholeForm97654(theForm) {
+            theForm.Username.value = theForm.EmailAddress.value;
+            var why = "";
+            if (theForm.FirstName) why += isEmpty(theForm.FirstName.value, "First Name");
+            if (theForm.LastName) why += isEmpty(theForm.LastName.value, "Last Name");
+            if (theForm.EmailAddress) why += checkEmail(theForm.EmailAddress.value);
+            if (theForm.Password && theForm.PasswordConfirm) {
+                why += isEmpty(theForm.Password.value, "Password");
+                why += isEmpty(theForm.PasswordConfirm.value, "Confirm Password");
+                if (theForm.Password.value != theForm.PasswordConfirm.value) why += appendBreak("- Password and its confirmation do not match.");
+                if (theForm.Password.value.length < 6) why += appendBreak("- Password must be 6 characters or longer.");
+            }
+            if (theForm.Username) why += isEmpty(theForm.Username.value, "Username");
+            if (why != "") {
+                alert(why);
+                return false;
+            }
+            if (submitcount97654 == 0) {
+                submitcount97654++;
+                theForm.submit();
+                return false;
+            } else {
+                alert("Form submission is in progress.");
+                return false;
+            }
+        }
+         //]]>
+    </script>
+</form>

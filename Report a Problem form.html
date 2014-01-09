@@ -1,0 +1,62 @@
+<h1>Report a Problem</h1>
+
+<form name="catwebformform33407" method="post" onsubmit="return checkWholeForm33407(this)" enctype="multipart/form-data" action="http://wheelingparkdistrict.businesscatalyst.com/FormProcessv2.aspx?WebFormID=90348&OID={module_oid}&OTYPE={module_otype}&EID={module_eid}&CID={module_cid}&SAR=False&PageID=/report-a-problem-submitted" class="col-sm-10">
+<div class="col-sm-12 row">
+    <p>The Wheeling Park District takes great pride in offering the best experience at all of our parks and facilities.  If you should encounter any problems with any of our parks and facilities, including safety hazards or vandalism,  please report them by completing the form below.</p>
+</div>
+<div class="row" style="margin-bottom:25px;">
+    <div class="col-sm-6">
+        <label for="FirstName">First Name</label><br />
+        <input type="text" name="FirstName" id="FirstName" class="cat_textbox form-control" maxlength="255" />
+    </div>
+    <div class="col-sm-6">
+        <label for="LastName">Last Name</label><br />
+        <input type="text" name="LastName" id="LastName" class="cat_textbox form-control" maxlength="255" />
+    </div>
+</div>
+<div class="row" style="margin-bottom:25px;">
+    <div class="col-sm-6">
+        <label for="EmailAddress">Email Address</label><br />
+        <input type="text" name="EmailAddress" id="EmailAddress" class="cat_textbox form-control" maxlength="255" />
+    </div>
+    <div class="col-sm-6">
+        <label for="HomePhone">Phone Number</label><br />
+        <input type="text" name="HomePhone" id="HomePhone" class="cat_textbox form-control" maxlength="255" />
+    </div>
+</div>
+<div class="col-sm-12 row" style="margin-bottom:25px;">
+    <label for="CAT_Custom_371062">Please Describe the Issue <br /><span style="color:#C41230; font-size:9px; font-style:italic; font-family:verdana,arial,sans-serif">* field is required</em></label><br /> 
+    <textarea name="CAT_Custom_371062" id="CAT_Custom_371062" cols="10" rows="4" class="cat_listbox form-control" onkeydown="if(this.value.length>=4000)this.value=this.value.substring(0,3999);" style="width:100%"></textarea>
+{module_ccsecurity}
+</div>
+
+<div class ="col-sm-12 row"><input class="cat_button btn btn-default" type="submit" value="Submit" id="catwebformbutton" /></div>
+
+
+
+    <script type="text/javascript" src="http://wheelingparkdistrict.businesscatalyst.com/CatalystScripts/ValidationFunctions.js"></script>
+    <script type="text/javascript">
+        //<![CDATA[
+        var submitcount33407 = 0;
+
+        function checkWholeForm33407(theForm) {
+            var why = "";
+            if (theForm.EmailAddress.value == "") {theForm.EmailAddress.value = "unknown@wheelingparkdistrict.com"};
+            if (theForm.EmailAddress) why += checkEmail(theForm.EmailAddress.value);
+            if (theForm.CAT_Custom_371062) why += isEmpty(theForm.CAT_Custom_371062.value, "Describe the issue ");
+            if (why != "") {
+                alert(why);
+                return false;
+            }
+            if (submitcount33407 == 0) {
+                submitcount33407++;
+                theForm.submit();
+                return false;
+            } else {
+                alert("Form submission is in progress.");
+                return false;
+            }
+        }
+         //]]>
+    </script>
+</form>

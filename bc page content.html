@@ -8,50 +8,104 @@
         <style>
             #map_objects {display: none}
             #map img { max-width: none;}
-            #toggle_GolfCourse{background-color: #9269FF;border-color: #7A59D4}
-            #toggle_GolfCourse:hover{background-color: #7A59D4}
-            #toggle_GolfCourse.active{background-color: #5D43A1; border-color: #5a488c;}
-            #toggle_AquaticCenters{background-color: #4473EA; border-color: #2c5bd3;}
-            #toggle_AquaticCenters:hover{background-color: #2c5bd3}
-            #toggle_AquaticCenters.active{background-color:#2852bf; border-color:#3C528D;}
+            #typeToggles label {text-align: center; text-overflow: clip;}
+            /* commented colors in hover states are alternative potential bg colors  */
+            #toggle_Golf-Course:hover{background-color: #DED4F9}
+            #toggle_Golf-Course.active{background-color: #9269FF; border-color: #7A59D4; color:#FFF;}
+            #toggle_Aquatic-Center:hover{background-color: #CBD6F4;/*#9EB5F1*/}
+            #toggle_Aquatic-Center.active{background-color:#4473EA; border-color:#2c5bd3; color:#FFF;}
+            #toggle_Park:hover{background-color: #AAD8AB; /*#D1E8D1*/}
+            #toggle_Park.active{background-color: #5CB85C; border-color: #4CAE4C; color:#FFF;}
+            #toggle_Country-Club:hover{background-color: #A9DCEB;/*#D0EAF1*/}
+            #toggle_Country-Club.active{background-color:#5BC0DE; border-color: #46B8DA; color:#FFF; }
+            #toggle_Tot-Lot:hover{background-color: #F2CA90;/*#F5E1C4*/}                        
+            #toggle_Tot-Lot.active{background-color: #ED9C28; border-color: #D58512; color:#FFF;}
+ 			#toggle_Recreation-Center:hover{background-color: #E8A5A3; /*#F0CECD;*/}
+			#toggle_Recreation-Center.active{background-color:#D9534F; border-color:#D43F3A; color:#FFF;}            
         </style>
         <div id="map" class="col-md-12 panel panel-default" style="min-height: 400px;">
         </div>
         <div class="panel panel-default">
-        	<form role="form">
-  				<div class="form-group">
-	  				<div class="btn-group" data-toggle="buttons">
-					  <label id="toggle_AquaticCenters" class="btn btn-info">
-					    <input type="checkbox"> Aquatic Centers
-					  </label>
-					  <label id="toggle_GolfCourse" class="btn btn-primary">
-					    <input type="checkbox"> Golf Courses
-					  </label>
-					  <label class="btn btn-success">
-					    <input type="checkbox"> Parks
-					  </label>				  
-					  <label class="btn btn-info">
-					    <input type="checkbox"> Country Clubs
-					  </label>
-					  <label class="btn btn-warning">
-					    <input type="checkbox"> Tot Lots
-					  </label>
-					  <label class="btn btn-danger">
-					    <input type="checkbox"> Recreation Center
-					  </label>				  
-					</div>  			
-
-  				</div>
-
-  			</form>
+        <div class="clearfix" style="padding-top:20px;">
+        
+        <!--<form role="form"> -->
+        <div class="form-group">
+            <div id="typeToggles" class="btn-group col-xs-12" data-toggle="buttons">
+	           <!--
+	            <label id="toggle_all" class="btn btn-default"><input type="checkbox" />Show All</label>
+	        -->
+	            <label id="toggle_Aquatic-Center" class="btn btn-default col-xs-2">
+	            	<input type="checkbox" /> Aquatic <br class="hidden-lg"> Centers
+	            </label>
+	            <label id="toggle_Golf-Course" class="btn btn-default col-xs-2">
+	            	<input type="checkbox" /> Golf <br class="hidden-lg">Courses
+	            </label>
+	            <label id="toggle_Park" class="btn btn-default col-xs-2">
+	            	<input type="checkbox" /> Parks <br class="hidden-lg">&nbsp;
+	            </label>
+	            <label id="toggle_Country-Club" class="btn btn-default col-xs-2">
+	            	<input type="checkbox" /> Country <br class="hidden-lg">Clubs
+	            </label>
+	            <label id="toggle_Tot-Lot" class="btn btn-default col-xs-2">
+	            	<input type="checkbox" /> Tot <br class="hidden-lg">Lots
+	            </label>
+	            <label id="toggle_Recreation-Center" class="btn btn-default col-xs-2">
+	            	<input type="checkbox" /> Recreation <br class="hidden-lg">Center
+	            </label>
+            </div>
         </div>
-
+            <div id="featureToggles" class="form-group col-xs-12">
+            <h4>Show locations that have:</h4>
+            <label class="checkbox-inline col-xs-3" style="margin-left: 10px;"><input type="checkbox" value="Aquatic Splash" /> Aquatic Splash</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Ball Field" /> Ball Field</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Basketball" /> Basketball</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Carriage House" /> Carriage House</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Chamber Park Church" /> Chamber Park Church</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Childerley Chapel" /> Childerley Chapel</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Class Room" /> Class Room</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Drinking Fountain" /> Drinking Fountain</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Fitness Center" /> Fitness Center</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Gazebo" /> Gazebo</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Gymnasium" /> Gymnasium</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Jogging Path" /> Jogging Path</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Maintenance Building" /> Maintenance Building</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Meeting Room" /> Meeting Room</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Museum" /> Museum</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Natural Wetlands" /> Natural Wetlands</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Nature Trail" /> Nature Trail</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Neighborhood Park" /> Neighborhood Park</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Outdoor Ice Skating" /> Outdoor Ice Skating</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Outdoor Pool" /> Outdoor Pool</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Parking" /> Parking</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Passive Park" /> Passive Park</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Picnic Table" /> Picnic Table</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Play Structure" /> Play Structure</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Play Structure ages 2 to 5" /> Play Structure ages 2 to 5</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Play Structure ages 6 to 9" /> Play Structure ages 6 to 9</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Portable Facilities" /> Portable Facilities</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Preschool" /> Preschool</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Recreation Center" /> Recreation Center</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Sand Volleyball Courts" /> Sand Volleyball Courts</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Shelter" /> Shelter</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Soccer Field" /> Soccer Field</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Tennis Court" /> Tennis Court</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Walking Path" /> Walking Path</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Walking Track" /> Walking Track</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Washrooms" /> Washrooms</label>
+            <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Wetland Nature Area" /> Wetland Nature Area</label>
+            </div>
+        <!--- </form> -->
+        </div>
+        </div>
         <div id="map_objects">
         {module_webapps,15712,a,,,,true,100,,1}
         </div>
         <script>
 $( document ).ready(function() {
-	var activeItem;
+
+//==============================================================================
+var activeItem;
+
 function initialize() {
 //-----------start variable scope for each object----------------------	
 	var mapOptions = {
@@ -65,7 +119,7 @@ function initialize() {
 			maxWidth: Math.round( $('#map').width()*.65 )
 		});
 	
-	$('#map_objects > div').each(function(){
+	$('#map_objects > div[data-visible="true"]').each(function(){
 	//-----------start building map objects-----------
 		var id = $(this).attr('id');
 		var type = $(this).data('type');
@@ -98,7 +152,7 @@ function initialize() {
 			title: $(this).data('name'),
 			icon: pinImage
 		});
-
+//result 
 	
 		google.maps.event.addListener( marker, 'click', function() {
 			infoWindow.close()
@@ -111,21 +165,95 @@ function initialize() {
 			//infoWindow.open(map, marker)
 		}
 	//-----------end building map objects-----------
-console.log('end of item build'+activeItem);
+
 	});
 	
 };
 
+//==============================================================================
+
+function filterMapObjects() {
+	var typeSpecified = $('#typeToggles label input:checked').length>=1;
+	var featureSpecified = $('#featureToggles label input:checked').length>=1;
+	
+	function setVisibleType(){
+		$('#typeToggles label input:checked').each( function(){
+			var type =  $(this).parent().attr('id').slice( $(this).parent().attr('id').indexOf('_')+1 ).replace(/-/,' ');
+			$('#map_objects').children('div[data-type="'+type+'"]').attr('data-visible','true')
+		}) 
+	};
+	
+	function setVisibleFeature(){
+		$('#featureToggles label input:checked').each( function() {
+			$('#map_objects').children('div[data-features*="'+$(this).val()+'"]').attr('data-visible', 'true') ;
+		});		
+	};
+
+	if ( typeSpecified || featureSpecified)  
+		{ $('#map_objects').children('div').attr('data-visible', 'false'); }
+	else 
+		{ $('#map_objects').children('div').attr('data-visible', 'true'); };
+
+	if (featureSpecified && !typeSpecified) 
+		{ setVisibleFeature() };
+
+	if (!featureSpecified && typeSpecified) 
+		{ setVisibleType() };
+
+	if (featureSpecified && typeSpecified) {
+		
+		setVisibleType()
+
+		var array = $('#map_objects').children('div[data-visible="true"]');
+		
+		array.each( function() 
+			{ $(this).attr('data-visible', 'false');	
+		});
+
+		$('#featureToggles label input:checked').each( function() {
+			array.filter( $('div[data-features*="'+$(this).val()+'"]') ).attr('data-visible', 'true')
+		});		
+	};
+
+}
+
+
+//==============================================================================
+
+
+
+
+//==============================================================================
+
+$('#typeToggles label input').change( function(){
+	filterMapObjects()
+//	$('#map_objects').children('div').attr('data-visible', 'true')
+	$('body').trigger('mapRefresh'); 
+});
+
+//==============================================================================
+
+$('#featureToggles label input').change( function() {
+	filterMapObjects()
+	$('body').trigger('mapRefresh'); 
+});
+
+//==============================================================================
+
+
 $('body').on('mapRefresh', function(event) {
 	initialize();
-	
-	console.log('end of initialization'+activeItem);
-	
-	if(activeItem){google.maps.event.trigger(activeItem, 'click' );
-}
+		
+	if(activeItem){
+		google.maps.event.trigger(activeItem, 'click' );
+	}
+
 //-----------end initialize function----------------------
+
 });
-console.log('pre-intialize'+activeItem);
+
+
+
 initialize();
 
 
