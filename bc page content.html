@@ -24,78 +24,86 @@
             /*#toggle_Tot-Lot.active{background-color: #ED9C28; border-color: #D58512; color:#FFF;}*/
             #toggle_Recreation-Center:hover{background-color: #E8A5A3; /*#F0CECD*/}
             #toggle_Recreation-Center.active{background-color:#D9534F; border-color:#D43F3A; color:#FFF;}
+            @media (max-width: 600px) {
+            	#typeToggles label{	padding: 4px 6px}
+            }
         </style>
         <div id="map" class="col-md-12 panel panel-default" style="min-height: 400px;">
         </div>
         <div class="panel panel-default">
         <div class="clearfix" style="padding-top: 20px;">
         <!--<form role="form"> -->
-        <div class="form-group">
-        <div id="typeToggles" class="btn-group col-xs-12" data-toggle="buttons">
+        <div class="form-group" style="text-align:center;">
+        	<div id="typeToggles" class="btn-group" data-toggle="buttons" style="text-align:center;">
         <!--
 	            <label id="toggle_all" class="btn btn-default"><input type="checkbox" />Show All</label>
 	        -->
-        <label id="toggle_Park" class="btn btn-default col-xs-2">
-        <input type="checkbox" /> Parks <br class="hidden-lg" /> &nbsp;
-        </label>
+	        <label id="toggle_Park" class="btn btn-default">
+	        	<input type="checkbox" /> Parks <br class="hidden-lg" /> &nbsp;
+	        </label>
 
-        <label id="toggle_Aquatic-Center" class="btn btn-default col-xs-2">
-        <input type="checkbox" /> Pools <br class="hidden-lg" /> &nbsp;
-        </label>
+	        <label id="toggle_Pool" class="btn btn-default">
+	        	<input type="checkbox" /> Pools <br class="hidden-lg" /> &nbsp;
+	        </label>
 
-        <label id="toggle_Recreation-Center" class="btn btn-default col-xs-2">
-        <input type="checkbox" /> Recreation <br class="hidden-lg" />Center
-        </label>        
-        <label id="toggle_Golf-Course" class="btn btn-default col-xs-2">
-        <input type="checkbox" /> Golf <br class="hidden-lg" />
-        Courses
-        </label>
+	        <label id="toggle_Recreation-Center" class="btn btn-default">
+	        	<input type="checkbox" /> Recreation <br class="hidden-lg" />Center
+	        </label>        
+	        
+	        <label id="toggle_Golf-Course" class="btn btn-default">
+	        	<input type="checkbox" /> Golf <br class="hidden-lg" />Courses
+	        </label>
 
-        <label id="toggle_Country-Club" class="btn btn-default col-xs-2">
-        <input type="checkbox" /> Country <br class="hidden-lg" />
-        Club
-        </label>
-        <!--
-        <label id="toggle_Tot-Lot" class="btn btn-default col-xs-2">
-        <input type="checkbox" /> Tot <br class="hidden-lg" />
-        Lots
-        </label>
-    -->
+	        <label id="toggle_Country-Club" class="btn btn-default">
+	        	<input type="checkbox" /> Country <br class="hidden-lg" />Club
+	        </label>
+	        <!--
+	        <label id="toggle_Tot-Lot" class="btn btn-default col-xs-2">
+	        <input type="checkbox" /> Tot <br class="hidden-lg" />
+	        Lots
+	        </label>
+	    -->
 
-        </div>
+        	</div>
         </div>
         <div id="featureToggles" class="form-group col-xs-12">
-        <h4><p><span class="glyphicon glyphicon-arrow-up"></span> Filter by location and/or filter by amenity <span class="glyphicon glyphicon-arrow-down"></span></p></h4>
-        <label class="checkbox-inline col-xs-3" style="margin-left: 10px;"><input type="checkbox" value="Aquatic Facilities" /> Aquatic Facilities</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Ball Field" /> Ball Field</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Basketball Court" /> Basketball Court</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Carriage House" /> Carriage House</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Chamber Park Church" /> Chamber Park Church</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Childerley Chapel" /> Childerley Chapel</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Drinking Fountain" /> Drinking Fountain</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Fitness Center" /> Fitness Center</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Gazebo" /> Gazebo</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Gymnasium" /> Gymnasium</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Jogging Path" /> Jogging Path</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Meeting Room" /> Meeting Room</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Multi-purpose Rooms" /> Multi-purpose Rooms</label>        
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Museum" /> Museum</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Natural Wetlands" /> Natural Wetlands</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Nature Trail" /> Nature Trail</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Outdoor Ice Skating" /> Outdoor Ice Skating</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Outdoor Pool" /> Outdoor Pool</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Parking" /> Parking</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Picnic Table" /> Picnic Table</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Play Structure" /> Play Structure</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Preschool" /> Preschool</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Recreation Center" /> Recreation Center</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Sand Volleyball Courts" /> Sand Volleyball Courts</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Shelter" /> Shelter</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Soccer Field" /> Soccer Field</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Tennis Court" /> Tennis Court</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Walking Path" /> Walking Path</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Walking Track" /> Walking Track</label>
-        <label class="checkbox-inline col-xs-3"><input type="checkbox" value="Washrooms" /> Washrooms</label>
+	        <h4 style="text-align:center;"><p><span class="glyphicon glyphicon-arrow-up"></span> Filter by type and/or filter by amenity <span class="glyphicon glyphicon-arrow-down"></span></p></h4>
+	        <div class="col-xs-4">
+		        <label class="checkbox-inline col-xs-12" style="margin-left: 10px;"><input type="checkbox" value="Aquatic Facilities" /> Aquatic Facilities</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Ball Field" /> Ball Field</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Basketball Court" /> Basketball Court</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Carriage House" /> Carriage House</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Chamber Park Church" /> Chamber Park Church</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Childerley Chapel" /> Childerley Chapel</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Drinking Fountain" /> Drinking Fountain</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Fitness Center" /> Fitness Center</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Gazebo" /> Gazebo</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Gymnasium" /> Gymnasium</label>
+		    </div>
+		    <div class="col-xs-4">
+		        <label class="checkbox-inline col-xs-12" style="margin-left: 10px;"><input type="checkbox" value="Jogging Path" /> Jogging Path</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Meeting Room" /> Meeting Room</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Multi-purpose Rooms" /> Multi-purpose Rooms</label>        
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Museum" /> Museum</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Natural Wetlands" /> Natural Wetlands</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Nature Trail" /> Nature Trail</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Outdoor Ice Skating" /> Outdoor Ice Skating</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Outdoor Pool" /> Outdoor Pool</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Parking" /> Parking</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Picnic Table" /> Picnic Table</label>
+		    </div>
+		    <div class="col-xs-4">
+		        <label class="checkbox-inline col-xs-12" style="margin-left: 10px;"><input type="checkbox" value="Play Structure" /> Play Structure</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Preschool" /> Preschool</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Recreation Center" /> Recreation Center</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Sand Volleyball Courts" /> Sand Volleyball Courts</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Shelter" /> Shelter</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Soccer Field" /> Soccer Field</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Tennis Court" /> Tennis Court</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Walking Path" /> Walking Path</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Walking Track" /> Walking Track</label>
+		        <label class="checkbox-inline col-xs-12"><input type="checkbox" value="Washrooms" /> Washrooms</label>
+	    	</div>
         </div>
         <!--- </form> -->
         </div>
@@ -140,7 +148,7 @@ function initialize() {
 		};
 
 	//setting pin color based on 'type'
-		if (type == 'Aquatic Center'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/blue.png'}
+		if (type == 'Pool'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/blue.png'}
 		else if (type == 'Country Club'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/lightblue.png'}
 		else if (type == 'Golf Course'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/orange.png'}
 		else if (type == 'Park'){pinImage = 'http://maps.google.com/mapfiles/ms/micons/green.png'}
