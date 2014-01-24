@@ -85,35 +85,40 @@ if (BidsAndRFPs_detailView){
 //end of page build
 
 //document click tracking
-	$('a.docLink').click(
+	$('a.docLink').click( function(event) {
+		event.preventDefault();
+		
+		//gather info on clicked item
+		var documentURL  = $(this).attr('href'); 
+		var documentName = documentURL.substring(documentURL.lastIndexOf('/')+1); 
+		
+		//create record to be sent to BC
+		var record       = {
+			CAT_Custom_381331: pageName,
+			CAT_Custom_381329: documentName
+		};
+		
+		//merge info about the currently logged in user into the record
+		$.extend(record,user);
+		
+		//check for and fix missing required fields
+		$.each(record,function(key,value){
+			if(value==""){ user[key]="---"}
+		});
 
-		function(event) {
-			event.preventDefault();
-			
-			//gather info on clicked item
-			var documentURL  = $(this).attr('href'); 
-			var documentName = documentURL.substring(documentURL.lastIndexOf('/')+1); 
-			
-			//create record to be sent to BC
-			var record       = {
-					CAT_Custom_381331: pageName,
-					CAT_Custom_381329: documentName
-			};
-			
-			//merge logged in user info into record
-			$.extend(record,user);
-			
-			//check for and fix missing required fields
-			$.each(record,function(key,value){
-				if(value==""){ user[key]="---"}
-			});
+		//submit record to BC, then open document
+		$.ajax({
+			url: notificationURL,
+			type: 'POST',
+			data: $.param(record),
+			async: false
+		})
+		.always(function() {
+			var win=window.open(documentURL,'_blank');
+			win.focus();
+		});
 
-			//submit record to BC, then open document 
-			$.post (notificationURL, $.param(record) )
-				.always(function() { 
-					window.open(documentURL); 
-				})
-		}); 			
+	}); 			
 	
 // -----  detail view script end -----
 return
