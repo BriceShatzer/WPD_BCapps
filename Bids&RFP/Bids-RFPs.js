@@ -1,59 +1,160 @@
-$( document ).ready(function() {
-	
-	$('#webAppItem_list div').each( function() {
-		var rowInsert = $('<tr></tr>');
-		var name = $(this).attr('id');
-		var bid_number = $(this).attr('data-bid_number');
-		var due_date = $(this).attr('data-bid_due_date').split("-");
-		var bid_doc1 = $(this).attr('data-bid_doc1');
-		var bid_doc2 = $(this).attr('data-bid_doc2');
-		var bid_doc3 = $(this).attr('data-bid_doc3');
-		var bid_doc4 = $(this).attr('data-bid_doc4');
-		var bid_doc5 = $(this).attr('data-bid_doc5');
-		var addendum_doc1 = $(this).attr('data-addendum_doc1');	
-		var addendum_doc2 = $(this).attr('data-addendum_doc2');
-		var addendum_doc3 = $(this).attr('data-addendum_doc3');
-		var addendum_doc4 = $(this).attr('data-addendum_doc4');
-		var addendum_doc5 = $(this).attr('data-addendum_doc5');
-		var contact_name = $(this).attr('data-contact_name');
-		var contact_email = $(this).attr('data-contact_email');
-		var contact_phone = $(this).attr('data-contact_phone');
-		var bid_tabulation = $(this).attr('data-bid_tabulation');
+$(document).ready(function() {
 
 
-		$('<td></td>').append(name).appendTo(rowInsert);
-		$('<td></td>').append(bid_number).appendTo(rowInsert);
-		var date 
-		$('<td></td>').append(due_date[1]+"/"+due_date[0]+"/"+due_date[2]).appendTo(rowInsert);
+if (BidsAndRFPs_detailView){
+// -----  detail view script start -----
+
+//build page
+	$('#content>ol.breadcrumb>li.active ').before('<li><a href="/bids-rfps">Bids & RFPs</a></li>');
 		
-		var bid_documents = $('<td class="docs"></td>')
-		var bid_doc_vars = [bid_doc1, bid_doc2, bid_doc3, bid_doc4, bid_doc5];
-		for(i=0; i<6; i++ ){
-			if ( bid_doc_vars[i]) {
-				$('<a target="_blank"></a>').attr('href', bid_doc_vars[i] ).append( $( '<span class="glyphicon glyphicon-file" style="font-size: 18px;"></span>' )	).appendTo(bid_documents);
-			}
+	var $infoBlocks      = [];
+	var bid_doc_all      = $.grep( [bid_doc1, bid_doc2, bid_doc3, bid_doc4, bid_doc5], function(string,i){return string.length>0});
+	var addendum_doc_all = $.grep( [addendum_doc1, addendum_doc2, addendum_doc3, addendum_doc4, addendum_doc5], function(string, i){return string.length>0}) ;
+			
+	//due date 
+	if (due_date){
+		$infoBlocks.push(
+			$('<div style="text-align:center;margin-bottom:15px;" class="col-xs-6"></div>')		
+				.append( '<span style="font-weight:bold;">Bid Due Date: </span>' )
+				.append(due_date[1] + "/" + due_date[0] + "/" + due_date[2])
+		)
+	}
+		
+	//bid number 
+	if (bid_number){
+		$infoBlocks.push(			
+			$('<div style="text-align:center;margin-bottom:15px;" class="col-xs-6"></div>')		
+				.append( '<span style="font-weight:bold;">Bid Number: </span>' )
+				.append(bid_number)	
+		)
+	}
 
-		}
-		bid_documents.appendTo(rowInsert);
+	//bid tabulation 
+	if (bid_tabulation){
+		$infoBlocks.push(		
+			$('<div style="margin-bottom:15px;padding-left:0px;padding-right:0px;text-align:center;"></div>')
+				.append( 
+					$('<a class="docLink" target="_blank"></a>')
+						.attr('href', bid_tabulation )
+						.append( '<span class="glyphicon glyphicon-file" style="font-size: 26px;float:left;"></span>' )						
+						.append( '<span style="float:left;line-height:1em;">View Bid<br class="hidden-xs"> Tabulation</span>' )
+				)			
+		)
+	}
+	
+	$.each($infoBlocks, function() {
+		switch ($infoBlocks.length) {
+	        case 1: $(this).addClass('col-sm-6'); break;	    
+	        case 2: $(this).addClass('col-sm-3'); break;	    
+	        case 3: $(this).addClass('col-sm-2'); break;
+	    }
+	    
+		$(this).addClass('col-xs-12').appendTo('#generalInfo');	    
+    });
+	
+	if(bid_doc_all.length>0){
+		$('<div class="col-sm-6 clearfix"><div class="panel panel-default col-xs-12 clearfix" id="bidDocsArea" style="margin-top:20px;padding-bottom:20px;"><h3>Documents</h3></div></div>').appendTo('#content');
 
-		var addendum_documents = $('<td class="addendum"></td>')
-		var addendum_doc_vars = [addendum_doc1, addendum_doc2, addendum_doc3, addendum_doc4, addendum_doc5];
-		for(i=0; i<6; i++ ){
-			if ( addendum_doc_vars[i] ){
-				$('<a target="_blank"></a>').attr('href', addendum_doc_vars[i] ).append( $( '<span class="glyphicon glyphicon-file" style="font-size: 18px;"></span>' )	).appendTo(addendum_documents);
-			  }
-		}
-		addendum_documents.appendTo(rowInsert);
+		
+		$.each(bid_doc_all, function(){
+			$('<div style="clear:left;margin-bottom:8px;" class="clearfix"></div>')
+				.append( 
+					$('<a class="docLink" target="_blank"></a>')
+						.attr('href', this )
+						.append( '<div style="float:left;"><span class="glyphicon glyphicon-file" style="font-size: 26px;"></span></div>' )						
+						.append( '<span style="vertical-align:top;margin-left:5px;">'+this.substring(this.lastIndexOf('/')+1) + '</span>' )
+				)
+				.appendTo('#bidDocsArea') 
+		});
+		
+	}
+	if(addendum_doc_all.length>0){
+		$('<div class="col-sm-6 clearfix"><div class="panel panel-default col-xs-12 clearfix" id="addendumDocsArea" style="margin-top:20px;padding-bottom:20px;"><h3>Addenda</h3></div></div>').appendTo('#content');
+		
+		$.each(addendum_doc_all, function() {
+			$('<div style="clear:left;margin-bottom:8px" class="clearfix"></div>')
+				.append( 
+					$('<a class="docLink" target="_blank"></a>')
+						.attr('href', this )
+						.append( '<div style="float:left;"><span class="glyphicon glyphicon-file" style="font-size: 26px;"></span></div>' )						
+						.append( '<span style="vertical-align:top;margin-left:5px;">'+this.substring(this.lastIndexOf('/')+1) + '</span>' )
+				)
+				.appendTo('#addendumDocsArea')
+		});
+	}
+//end of page build
 
-		$('<td></td>').append(contact_name+'<br />').append(contact_phone+'<br />').append('<a href=mailto:"'+contact_email+'">'+contact_email+'</a>').appendTo(rowInsert);
+//document click tracking
+	$('a.docLink').click(
 
+		function(event) {
+			event.preventDefault();
+			
+			//gather info on clicked item
+			var documentURL  = $(this).attr('href'); 
+			var documentName = documentURL.substring(documentURL.lastIndexOf('/')+1); 
+			
+			//create record to be sent to BC
+			var record       = {
+					CAT_Custom_381331: pageName,
+					CAT_Custom_381329: documentName
+			};
+			
+			//merge logged in user info into record
+			$.extend(record,user);
+			
+			//check for and fix missing required fields
+			$.each(record,function(key,value){
+				if(value==""){ user[key]="---"}
+			});
 
-		var bid_tabulation_cell = $('<td></td>');
-		if ( bid_tabulation) {
-				$('<a target="_blank"></a>').attr('href', bid_tabulation ).append( $( '<span class="glyphicon glyphicon-file" style="font-size: 18px;"></span>' )	).appendTo(bid_tabulation_cell);
-			}			$('<td></td>').append(bid_tabulation_cell).appendTo(rowInsert);
+			//submit record to BC, then open document 
+			$.post (notificationURL, $.param(record) )
+				.always(function() { 
+					window.open(documentURL); 
+				})
+		}); 			
+	
+// -----  detail view script end -----
+return
+}		
 
-		$('table').append(rowInsert);
-	});
+if(BidsAndRFPs_listView){
+// -----  list view script start -----	
+    $('#webAppItem_list div').each(function() {
+		var $rowInsert       = $('<tr></tr>');
+		var name             = $(this).attr('id');
+		var bid_number       = $(this).attr('data-bid_number');
+		var due_date         = $(this).attr('data-bid_due_date').split("-");
+		var details_url      = $(this).attr('data-details_url');
+		var contact_name     = $(this).attr('data-contact_name');
+		var contact_email    = $(this).attr('data-contact_email');
+		var contact_phone    = $(this).attr('data-contact_phone');
+	//build row
+        //cell
+        $('<td style="max-width: 250px"></td>').append(name).appendTo($rowInsert);
+
+        //cell
+        $('<td class="hidden-xs"></td>').append(bid_number).appendTo($rowInsert);
+
+        //cell
+        $('<td style="text-align:center;"></td>').append(due_date[1] + "/" + due_date[0] + "/" + due_date[2]).appendTo($rowInsert);
+        
+        //cell
+        $('<td class="hidden-xs"></td>').append(contact_name + '<br />').append(contact_phone + '<br />').append('<a href=mailto:"' + contact_email + '">' + contact_email + '</a>').appendTo($rowInsert);        
+
+        //cell
+        var $bid_documents = $('<td class="docs" style="text-align:center"></td>')
+        $('<a target="_blank"></a>').attr('href', details_url).append($('<span class="glyphicon glyphicon-file" style="font-size: 26px;"></span>')).appendTo($bid_documents);
+
+        $bid_documents.appendTo($rowInsert);
+    
+	//add row to table
+	$('table').append($rowInsert);
+    
+    });
+// -----  list view script end -----
+}
+return
 
 });

@@ -1,0 +1,47 @@
+<h2>{tag_name}</h2>
+<div id="generalInfo" class="clearfix">
+	<div class="col-sm-6" style="margin-bottom:15px;">
+		<span style="font-weight: bold; text-align: center;">Contact Info: </span><br />
+		{tag_contact name} <br />
+		{tag_contact phone} <br />
+		<a href="mailto:{tag_contact email}">{tag_contact email}</a>
+	</div>
+</div>
+
+<script>
+
+var BidsAndRFPs_detailView = true;
+
+	var contact_name    = "{tag_contact name}" ;
+	var contact_email   = "{tag_contact email}";
+	var contact_phone   = "{tag_contact phone}" ;
+	var due_date        = "{tag_bid due date}".split("-");
+	var bid_number      = "{tag_bid number}";
+	var bid_tabulation  = "{tag_bid tabulation_value}";
+	
+	var bid_doc1        = "{tag_bid document 1_value}";
+	var bid_doc2        = "{tag_bid document 2_value}";
+	var bid_doc3        = "{tag_bid document 3_value}";
+	var bid_doc4        = "{tag_bid document 4_value}";
+	var bid_doc5        = "{tag_bid document 5_value}";
+	
+	var addendum_doc1   = "{tag_addendum document 1_value}"; 
+	var addendum_doc2   = "{tag_addendum document 2_value}"; 
+	var addendum_doc3   = "{tag_addendum document 3_value}"; 
+	var addendum_doc4   = "{tag_addendum document 4_value}"; 
+	var addendum_doc5   = "{tag_addendum document 5_value}";
+	
+	var pageName       = "{module_pagename}";
+	var user           = {};
+	var isUserLoggedIn = "{module_isloggedin}" ;	
+if(isUserLoggedIn == 1){
+	user.EmailAddress  = "{module_emailaddress}",
+	user.FirstName     = "{module_firstname}",
+	user.LastName      = "{module_lastname}"
+
+	}
+	var notificationURL = "http://www.wheelingparkdistrict.com/FormProcessv2.aspx?WebFormID=97416&OID={module_oid}&OTYPE={module_otype}&EID={module_eid}&CID={module_cid}&SAR=False&JSON=1" 
+	
+
+	
+</script>
